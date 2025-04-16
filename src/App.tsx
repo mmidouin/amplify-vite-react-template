@@ -22,9 +22,12 @@ function App() {
     client.models.Todo.delete({id});
   }
 
-  return (
+// In Amplify Gen 2, user attributes are accessed differently
+const displayName = user?.signInDetails?.loginId || "User";  
+
+return (
     <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
+      <h1>{displayName}'s todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
